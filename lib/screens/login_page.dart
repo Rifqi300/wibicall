@@ -46,36 +46,75 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   children: [
                     TextField(
+                      showCursor: true,
+                      cursorColor: Colors.blue,
+                      style: TextStyle(color: Colors.blueAccent, fontSize: 20),
                       decoration: InputDecoration(
-                          hintText: "Email",
-                          prefixIcon: Icon(Icons.email),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          )
+                        icon: Icon(Icons.email, size: 30, color: Colors.blue,),
+                        border: OutlineInputBorder(
+
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(
+                            color: Colors.blue,
+                          ),
+
+
+                  ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(
+                            color: Colors.blue,
+                          ),
+                        ),
+                        hintText: "Masukkan Username",
+                        hintStyle: TextStyle(color: Colors.blue, fontSize: 20),
+                          labelText: "Username",
+                          labelStyle: TextStyle(
+                            color: Colors.blue, fontSize: 20
+                          ),
+
                       ),
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     TextField(
-                      obscureText: hide,
+                      obscureText: true,
+                      obscuringCharacter: '*',
+                      showCursor: true,
+                      cursorColor: Colors.blue,
+                      style: TextStyle(color: Colors.blueAccent, fontSize: 20),
                       decoration: InputDecoration(
-                          hintText: "Password",
-                          suffixIcon: IconButton(onPressed: (){
-                            setState(() {
-                              hide = !hide;
-                            });
-                          },
-                            icon: hide?Icon(Icons.visibility_off):Icon(Icons.visibility),),
-                          prefixIcon: Icon(Icons.lock),
+                          icon: Icon(Icons.lock, size: 30, color: Colors.blue,),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
-                          )
+                          ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(
+                            color: Colors.blue,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(
+                            color: Colors.blue,
+                          ),
+                        ),
+                        hintText: "Masukkan Password",
+                        hintStyle: TextStyle(color: Colors.blue, fontSize: 20),
+                          labelText: "Password",
+                          labelStyle: TextStyle(
+                            color: Colors.blue, fontSize: 20
+                          ),
                       ),
                     ),
                     Align(
                       alignment: Alignment.centerRight,
-                      child: TextButton(onPressed: (){}, child: Text("Forget?"),
+                      child: Container(
+                        padding:  EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                       ),
                     ),
                     ElevatedButton(
@@ -85,16 +124,8 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       onPressed: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>JoinScreen(selfCallerId: selfCallerId)));
-                      }, child: Text("Login"),
+                      }, child: Text("Login", style: TextStyle(color : Colors.white),)
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Don't have any account?"),
-                        TextButton(onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>RegisterPage()));
-                        }, child: Text("Register?"))
-                      ],)
                   ],
                 ),
               ),
@@ -115,138 +146,4 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-class RegisterPage extends StatefulWidget {
-  @override
-  State<RegisterPage> createState() => _RegisterPageState();
-}
 
-class _RegisterPageState extends State<RegisterPage> {
-  bool hide = true;
-  TextEditingController password = TextEditingController();
-  TextEditingController cpassword = TextEditingController();
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Scaffold(
-        backgroundColor: Colors.blue,
-        body: Stack(
-          children: [
-            Container(
-              margin: EdgeInsets.only(
-                top: 400,
-              ),
-              width: double.infinity,
-              height: 450,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(topRight: Radius.circular(40),topLeft: Radius.circular(40))
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              margin: EdgeInsets.only(top: 200, left: 50, right: 50),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black38,
-                      spreadRadius: 0.1,
-                      blurRadius: 5,
-                    )
-                  ]
-              ),
-              child: Column(
-                children: [
-                  TextField(
-                    decoration: InputDecoration(
-                        hintText: "Email",
-                        prefixIcon: Icon(Icons.email),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        )
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextField(
-                    controller: password,
-                    obscureText: hide,
-                    decoration: InputDecoration(
-                        hintText: "Password",
-                        suffixIcon: IconButton(onPressed: (){
-                          setState(() {
-                            hide = !hide;
-                          });
-                        },
-                          icon: hide?Icon(Icons.visibility_off):Icon(Icons.visibility),),
-                        prefixIcon: Icon(Icons.lock),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        )
-                    ),
-                  ),
-                  SizedBox(height: 20,),
-                  TextField(
-                    controller: cpassword,
-                    obscureText: hide,
-                    decoration: InputDecoration(
-                        hintText: "Confirm Password",
-                        suffixIcon: IconButton(onPressed: (){
-                          setState(() {
-                            hide = !hide;
-                          });
-                        },
-                          icon: hide?Icon(Icons.visibility_off):Icon(Icons.visibility),),
-                        prefixIcon: Icon(Icons.lock),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        )
-                    ),
-                  ),
-                  ElevatedButton(
-                    style: TextButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        padding: EdgeInsets.symmetric(horizontal: 100)
-                    ),
-                    onPressed: (){
-                      if(password.text != cpassword.text){
-                        showDialog(context: context, builder: (context){
-                          return AlertDialog(
-                           title: Text("Message"),
-                           content: Text("Your Enter Password Do Not Match Each Other"),
-                          );
-                        });
-                      }else{
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginPage()));
-                      }
-                    }, child: Text("Register"),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Already have any account"),
-                      TextButton(onPressed: (){}, child: Text("Login?"))
-                    ],)
-                ],
-              ),
-            ),
-            Positioned(
-              
-                top: 80, left: 55,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Register", style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 40),),
-                    Text("Create  your account", style:
-                    TextStyle(color: Colors.white,fontWeight: FontWeight.w300,fontSize: 17),)
-                  ],
-                ))
-          ],
-        ),
-      ),
-    );
-  }
-}
